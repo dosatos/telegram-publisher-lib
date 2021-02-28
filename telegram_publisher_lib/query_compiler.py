@@ -22,5 +22,6 @@ def compile_query(query: TelegramQuery):
 
 
 def get_token(request: TelegramRequest):
-    if request.token == "test_telegram_token":
-        return os.getenv("test_telegram_token")
+    if request.token is None:
+        raise Exception("Request token alias (`token`) cannot be null")
+    return os.getenv(request.token)
